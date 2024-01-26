@@ -35,6 +35,9 @@ createApp({
         },
         previousImg : function(){
             this.currentImg <= 0 ? this.currentImg = 4 : this.currentImg-- 
+        },
+        setImage : function(index){
+            this.currentImg = index
         }
     }
   }).mount('#app')
