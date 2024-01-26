@@ -3,6 +3,7 @@ const { createApp } = Vue
 createApp({
     data() {
       return {
+        autoSlider : null,
         currentImg : 0,
         slides : [
             {
@@ -26,18 +27,29 @@ createApp({
                     title: "Marvel's Avengers",
                     text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
                 }
-            ],
+            ]
       }
     },
+    created(){
+        this.activeInterval()
+    },
     methods : {
-        nextImg : function(){
+        nextImg(){
            this.currentImg < 4 ? this.currentImg++ : this.currentImg = 0
         },
-        previousImg : function(){
+        previousImg(){
             this.currentImg <= 0 ? this.currentImg = 4 : this.currentImg-- 
         },
-        setImage : function(index){
+        setImage(index){
             this.currentImg = index
+        },
+        activeInterval(){
+            this.autoSlider = setInterval(()=>{
+                this.nextImg()
+            },2000)
+        },
+        stopInterval(){
+            clearInterval(this.autoSlider)
         }
     }
   }).mount('#app')
