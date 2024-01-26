@@ -3,6 +3,7 @@ const { createApp } = Vue
 createApp({
     data() {
       return {
+        currentImg : 0,
         slides : [
             {
                 image: 'img/01.webp',
@@ -28,4 +29,12 @@ createApp({
             ],
       }
     },
+    methods : {
+        nextImg : function(){
+           this.currentImg < 4 ? this.currentImg++ : this.currentImg = 0
+        },
+        previousImg : function(){
+            this.currentImg <= 0 ? this.currentImg = 4 : this.currentImg-- 
+        }
+    }
   }).mount('#app')
